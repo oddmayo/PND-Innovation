@@ -3,14 +3,14 @@ trace(utils:::unpackPkgZip, edit = T)
 # Buscar lista de palabras y n-gramas dentro de cada uno de los pactos del PND
 
 # Archivos con texto limpio de los pactos
-pactos <- list.files(path = 'C:\\Users\\cmayorquin\\Desktop\\PND\\PNDTT\\PlainTxts\\2018\\',pattern = ".*.txt",full.names=T)
+pactos <- list.files(path = 'C:/Users/ScmayorquinS/OneDrive - Departamento Nacional de Planeacion/DIDE/2019/Data Science Projects/PND-Innovation/Palabras innovación/docs/PlainTxts/2018/',pattern = ".*.txt",full.names=T)
 
 # Lista de caracteres con cada pacto y la introducción
 lista.pactos <- lapply(pactos, function(x) paste(readLines(x),collapse = " "))
 
 
 # Lista de palabras y n-gramas a buscar dentro de los pactos
-objetivo <- readLines("C:/Users/cmayorquin/Desktop/PND/PNDTT/Palabras innovación/palabras_clave_inn.txt",warn = F)
+objetivo <- readLines("C:/Users/ScmayorquinS/OneDrive - Departamento Nacional de Planeacion/DIDE/2019/Data Science Projects/PND-Innovation/Palabras innovación/palabras_clave_inn.txt",warn = F)
 
 preproctext <- function(x){
   require(magrittr)
@@ -27,14 +27,14 @@ preproctext <- function(x){
 }
 
 # Funciones veloces de preprocesamiento
-source("C:\\Users\\cmayorquin\\Desktop\\PND\\PNDTT\\Pre-Proc-PNDs\\FuncionesBase.R")
+source("C:/Users/ScmayorquinS/OneDrive - Departamento Nacional de Planeacion/DIDE/2019/Data Science Projects/PND-Innovation/Pre-Proc-PNDs/FuncionesBase.R")
 
 # Preprocesar palabras y todos los pactos
 objetivo.clean <- lapply(objetivo, function(x) preproctext(x))
 lista.pactos.clean <- lapply(lista.pactos, function(x) preproctext(x))
 
 # Stop words para este problema
-sw <- readLines(paste0("C:\\Users\\cmayorquin\\Desktop\\PND\\PNDTT\\Pre-Proc-PNDs\\stop_words_spanish.txt"),warn = F)
+sw <- readLines(paste0("C:/Users/ScmayorquinS/OneDrive - Departamento Nacional de Planeacion/DIDE/2019/Data Science Projects/PND-Innovation/Pre-Proc-PNDs/stop_words_spanish.txt"),warn = F)
 
 # Remover stop words para palabras y para todos los pactos
 objetivo.clean <- lapply(objetivo.clean, function(x) RemoveStopwordsFromText(texto = x,swords = sw)) 
